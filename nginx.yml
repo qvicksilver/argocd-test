@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -32,3 +33,17 @@ spec:
         image: nginx:1.15.0
         ports:
         - containerPort: 80
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      ttlSecondsAfterFinished: 600
+      containers:
+        - name: smoke-test
+          image: appropriate/curl:latest
+          command: ["http://nginx-service.nginx-test.svc:8080"]
