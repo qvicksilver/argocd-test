@@ -42,6 +42,7 @@ metadata:
 spec:
   template:
     spec:
+      restartPolicy: Never
       ttlSecondsAfterFinished: 600
       containers:
         - name: smoke-test
