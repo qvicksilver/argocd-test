@@ -47,4 +47,5 @@ spec:
       containers:
         - name: smoke-test
           image: appropriate/curl:latest
-          command: ["http://nginx-service.nginx-test.svc:8080"]
+          args: 
+          - http://nginx-service.nginx-test.svc:8080
